@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body id="PageBody" style="background: red;"><!--设定body节点的ID，以便在JavaScript代码中操作-->
+		<!-- 示例5-1-1 if语句用法 -->
+		<h1>当前时间,5点</h1>
+		<script>
+		var hours = 5;
+		if(hours<6)
+		{
+			alert("当前时间是" + hours + "点,还没到6点,某人继续睡!");
+		}
+		</script>
+		<!-- 示例5-1-2 if-else语句用法 -->
+		<h1>当前时间,7点</h1>
+		<script>
+		var hours = 7;
+		if(hours<6)
+		{
+			alert("当前时间是" + hours + "点,还没到6点,某人继续睡!");
+		}
+		else
+		{
+			alert("当前时间是" + hours + "点,某人该准备上班了!");
+		}
+        </script>
+		<!-- 示例 5-1-3 if-else-if 的用法 -->
+		<script>
+			var hours = 7;
+			if(hours<6)
+			{
+				alert("当前时间是" + hours + "点,还没到6点,某人继续睡!");
+			}
+			else if(hours<8)
+			{
+				alert("当前时间是" + hours + "点,某人决定吃早餐!");
+			}
+		</script>
+		<!-- 范例 5-4 -->
+		<script>
+			var who = "Bob";
+			switch(who)
+			{
+				case"Bob":
+				alert("Hello," + who);
+				break;
+				case"Jim":
+				alert("Hello," + who);
+				break;
+				case"Tom":
+				alert("Hello," + who);
+				break;
+				default:
+				alert("Nobody~!");
+			}
+		</script>
+		<!-- 范例 5-5 -->
+		<script>
+			function ChangeBgColor(colorIndex)
+			{
+				var dombody = document.getElementById("PageBody"); // 获取body节点
+				if(dombody==null)
+				{
+					return;
+				}
+				else
+				{
+					switch(colorIndex)  //使用多路开关语句根据菜单传入的值更改网页背景
+					{
+						case 1:dombody.style.background = "#666666";break;
+						case 2:dombody.style.background = "#003333";break;
+						case 3:dombody.style.background = "#ccccff";break;
+						case 4:dombody.style.background = "#6699cc";break;
+						default:dombody.style.background = "white";break;
+					}
+				}
+			}
+		</script>
+		<!--各颜色菜单，用户点击菜单时，背景颜色将变为与菜单相同的颜色-->
+		 <div style="width: 100px; height: 20px; text-align:center; background-color: #666666;" onclick="return ChangeBgColor( 1 )">
+		 </div>
+		 <div style="width: 100px; height: 20px; text-align:center; background-color: #003333;" onclick="return ChangeBgColor( 2 )">
+		 </div>
+		 <div style="width: 100px; height: 20px; text-align:center; background-color: #ccccff;" onclick="return ChangeBgColor( 3 )">
+		 </div>
+		 <div style="width: 100px; height: 20px; text-align:center; background-color: #6699cc;" onclick="return ChangeBgColor( 4 )">
+		 </div>
+		 <!-- 范例5-6 -->
+		 <div style="width: 261px; height: 70px; background-color: #ccc;" id="NameList" align="center">
+		 </div>
+		 <script>
+			 var names = new Array("Tomson","Alex","Jack");
+			 for(i=0;i<names.length;i++) // 遍历名单
+			 {
+				 var tn = document.createTextNote(names[i] + "");// 创建一个文本节点，内容为名单上当前名字
+				 var NameList = document.getElementById("NameList");// 找出层NameList
+				 NameList.appendChild(tn);   // 将文本节点添加到层NameList上
+			 }
+		 </script>
+		 <!-- 范例5-7 -->
+		 <script>
+			 var num = 1;
+			 while(num<101)
+			 {
+				 document.write(num + "");
+				 num++;
+			 }
+		 </script>
+		 <!-- 范例5-8 -->
+		 <script>
+			 var num = 1;
+			 do
+			 {
+				 document.write(num + "");
+				 num++;
+			 }
+			 while(num<101);
+		 </script>
+		 <!-- 范例5-9 -->
+		 <script>
+		      var time = 0;
+			  while(true)  // 无限循环
+			  {
+				  time++;
+				  var random = Math.floor(Math.random()*(1000));// 摇奖，随机产生2位中奖号码
+				  if(random == 352)
+				  {
+					  alert("恭喜你，偿试了" + time + "遍，终于中了一次奖（号码：352）");
+					  break;
+				  }
+			  }
+			  document.write("<br>");
+		 </script>
+		 <!-- 范例5-10-->
+		 <a href="http://www.cctv.com/default.shtml"><span style="color: #000">中央电视台</span></a><br/>
+		 <a href="http://www.sina.com.cn"><span style="color: #000">新 浪</span></a><br/>
+		 <a href="http://www.baidu.com/"><span style="color: #000">百 度</span></a><br/>
+		 <a href="http://www.163.com/"><span style="color: #000">网 易</span></a><br/>
+		 <a href="http://www.china.com"><span style="color: #000">中 华 网</span></a><br/>
+		 <a href="http://www.google.cn"><span style="color: #000">Google</span></a>
+		 <script>
+			 var adr ="";
+			 for(n in document.links) // 遍历超级链接集合
+			 {
+				 if(document.links.length == document.links[n])// 忽略集合的第一个元素，因为表示集合的元素个数
+				 {
+					 continue;
+				 }
+				 adr += document.links[n].ChildNodes[0].ChildNodes[0].toString() + ":\t"+ document.links[n] + "\n";// 提取链接名和网址，添加到字符串中
+			 }
+			 alert(adr);
+		 </script>
+		 <!-- 示例5-11 -->
+		 <script>
+			 try
+			 {
+				 var n = error; // 人为引发一个错误
+			 }
+			 catch(e)
+			 {
+				 alert(e.number&0xFFFF + "号错误:" + e.description);// 错误处理：仅输出错误信息
+			 }
+		 </script>
+		 <!-- 示例5-12-->
+		 <script>
+			 document.write("<br>");
+			 try
+			 {
+				 var fruit = new Array("鸭梨", "苹果", "葡萄", "李子");
+				 for(n=0;n<fruit.length;n++) // 遍历数组，在此人为引发一个异常
+				 {
+					 document.write( fruit[n] + " " );
+				 }
+			 }
+			 catch(e)
+			 {
+				  alert( (e.number&0xFFFF) + "号错误：" + e.description );    // 处理异常
+			 }
+			 finally                                                         // finally块中清除数组所占的资源
+			 {
+			     fruit = null;
+			     alert( "fruit="+fruit+"已经断开fruit数组的引用！");
+			 }
+		 </script>
+		 <!-- 范例5-13 -->
+		 <script>
+			try
+			{
+			    var total = 100;
+			    var parts = 0;
+			    if( parts == 0 )                    // 如果除数为0则抛出异常
+			    {
+			        throw "Error:parts is zero";
+			    }
+			    alert( "每人"+total/parts+"份");    //此处将捕获try块中抛出的异常
+			}
+			catch( e )
+			{
+			    alert( e );
+			} 
+		 </script>
+		 <!-- 范例5-14 -->
+		 <script>
+			  function btnSearch_MouseMove()
+			     {
+			         try // 将因为加并更换载图片可能出错，因此将代码将在try块中
+			         {
+			            var btnSearch = document.getElementById( "BtnSearch" );  // 获取图片框和文本框
+			            var SchTxt = document.getElementById( "SearchTXT" );
+			            var oriPicSrc = btnSearch.src;   // 保存原来的图片
+			            btnSearch.src = "icon2.png";
+			            SchTxt.select();                 // 当鼠标移上按钮则自动选择文框中的文字
+			         }
+			         catch( e )
+			         {
+			              btnSearch.src=oriPicSrc;       // 如果更新失败则换上原来的图片
+			         }
+			     }
+			     function btnSearch_MouseOut()
+			     {
+			         try
+			         {
+			            var btnSearch = document.getElementById( "BtnSearch" );
+			            var SchTxt = document.getElementById( "SearchTXT" );
+			            var oriPicSrc = btnSearch.src;
+			            btnSearch.src = "icon1.png";
+			         }
+			         catch( e )
+			         {
+			             btnSearch.src=oriPicSrc;    // 如果更新失败则换上原来的图片
+			         }
+			     }
+	    </script>
+	    <div style="border-right: #cccccc 1px solid; border-top: #cccccc 1px solid; left: 253px;
+			border-left: #cccccc 1px solid; width: 235px; border-bottom: #cccccc 1px solid;
+			position: absolute; top: 66px; height: 74px; background-color: #ccffff">
+	    <input id="SearchTXT" type="text" style="height:14px; left: 25px; position: absolute; top: 29px;" value="搜索关键词"/>
+		<img src="icon1.png" id="BtnSearch" style="width: 24px; height: 24px; left: 187px; position: absolute; top: 27px;"
+			onmouseout="return btnSearch_MouseOut()"  onmouseover="return btnSearch_MouseMove()"/>
+	    </div>	
+	</body> 
+</html>

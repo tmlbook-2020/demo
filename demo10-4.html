@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script type="text/javascript">
+			var count = navigator.mimeTypes.countgth;
+			with(document){
+				write("当前浏览器共支持" + count + "种MINE类型：");
+				write("<TABLE BORDER>")
+				write("<CAPTION>MINEtype 清单</CAPTION>")
+				write("<TR><TH><TH>名称<TH>描述<TH>扩展名<TH>附注")
+				for(var i = 0 ; i<count; i++){
+					write("<TR><TD>"+i+"<TD>"+navigator.mimeTypes[i].type+
+					"<TD>"+navigator.mimeTypes[i].description+"<TD>"+
+					navigator.mimeTypes[i].suffixes+"<TD>"+
+			        navigator.mimeTypes[i].enabledPlugin.name);
+				}
+			}
+		</script>
+	</body>
+<ml>
+
+

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>得到焦点与失去焦点</title>
+	</head>
+	<body id="Body" onFocus="OnFocus()" onBlur="OnBlur()">
+		<label id="info">失去焦点时窗口背景颜色变为灰色，得到焦点时为红色</label>
+		<script>
+			function OnFocus()
+			{
+				Body.style.background = "red";
+			}
+			function OnBlur()
+			{
+				Body.style.background = "gray";
+			}
+		</script>
+	</body>
+</html>

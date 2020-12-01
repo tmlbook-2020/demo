@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>第七讲数组</title>
+	</head>
+	<body>
+	<!-- 范例7-1 -->
+	<h1>通过指定元素创建数组</h1>
+	<script>
+		var students = new Array("Peter","Tom","Vicky","Jet");
+		for(n in students)
+		{
+			document.write(students[n] + "");
+		}
+		document.write("<br>");
+	</script>
+	<!-- 读取数组元素的应用 -->
+	<script>
+		var products = new Array("洗衣粉","香皂","洗洁精");
+		var product = products[1];
+		document.write(products[1]);
+		document.write("<br>");
+	</script>
+	<!-- 添加数组元素的应用 -->
+	<script>
+		var students = new Array();
+		students.push("Lily");
+		document.write(students);
+		document.write("<br>");
+	</script>
+	<!-- 删除数组元素的应用 -->
+	<h2>delete方法的应用</h2>
+	<script>
+		var names = Array("李莉","杨杨");
+		delete names[0];
+		document.write(names);
+		document.write("<br>");
+	</script>
+	<!-- 删除数组最后一个元素的应用 -->
+	<h2>pop方法的应用</h2>
+	<script>
+		var names = Array("李莉","杨杨");
+		names.pop(0);
+		document.write(names);
+		document.write("<br>");
+	</script>
+	<!-- 移除数组顶端的元素的应用 -->
+	<h2>shift方法的应用</h2>
+	<script>
+		var names = Array("李莉","杨杨");
+		names.shift(0);
+		document.write(names);
+		document.write("<br>");
+	</script>
+	<!-- 数组元素的个数的应用 -->
+	<script>
+		var Obj = new Array(1,2,3);
+		var count = Obj.length;
+		document.write("数组元素的个数:"+count);
+	</script>
+	<!-- 范例7-2 -->
+	<h1>toString方法的使用</h1>
+	<script>
+		var names =["Peter","Vicky","LuWamg","HuaLi"];
+		document.write(names.toString()); // 输出所有名字
+	</script>
+	<!-- 范例7-3 -->
+	<h1>join方法的使用</h1>
+	<script>
+		var names =["Peter","Vicky","LuWamg","HuaLi"];
+		document.write(names.join("-")); 
+	</script>
+	<!-- 范例7-5 -->
+	<script>
+		var appleBox = new Array();
+		appleBox.push("红苹果1","红苹果2","红苹果3","红苹果4","红苹果5","红苹果6");
+		for(;appleBox.length!=0;)
+		{
+			var handle = appleBox.pop();
+			document.write("<br>已发"+handle);
+		}
+		alert("苹果已经分光~!");
+	</script>
+	<!-- 范例7-6 -->
+	<h1>售票窗口模拟</h1>
+	<script>
+		var queue = new Array(); // 购票队列
+		function client(name)// 顾客对象
+		{
+			this.name = name;// 顾客名字
+			this.ticket = NaN; // 票号
+		}
+		queue.push(new client("Lily"),new client("Peter"));
+		new client("Vicky"),new client("Tom"),
+		new client("Jackson");// 将顾客排队
+		tickets = 4;// 库存票数
+		for(;((queue.length!=0)&&(tickets!=0));)  // 一直发售直到队伍里没有人或票已经售完
+		{
+			var current = queue.shift();// 队首已经买到票的人离开队伍
+			current.ticket = tickets;
+			document.write("<br>已售：" + current.name + "，流水号" + tickets );// 输出已买到票的顾客信息
+			tickets --;                                                         // 卖出一张，库存减一
+		}
+		  alert( "销售停止，目前队里有" + queue.length + "人，和" + tickets+"张票！" );   // 销售停止通知
+	</script>
+	<!-- 范例7-7 -->
+	<h1>unshift方法的使用</h1>
+	<script>
+		var queue = new Array("A","B","C");
+		document.write("<br>原数组:"+queue);
+		queue.unshift("D","E");
+		 document.write( "<br>在前端添加“D”“E”两元素后：" + queue );
+	</script>
+	<!-- 范例7-8 -->
+	<h1>concat的使用示例</h1>
+	<script>
+		var queueA = new Array( "顾客1", "顾客2", "顾客3", "顾客4", "顾客5" );  // 窗口A前的队伍A
+		var queueB = new Array( "顾客A", "顾客B", "顾客C", "顾客D", "顾客E" );  // 窗口B前的队伍B
+		var qa = queueA.join("-");  // 组合队伍A的成员，使用“-”格开
+		var qb = queueB.join( "-" );   
+		document.write("窗口前的两个队伍:");
+		document.write("<br><li>" + qa); // 输出队伍A的成员     
+		document.write("<br><li>" + qb);
+		queueA = queueA.concat(queueB); // 将队伍B接到队伍A的后面
+		qa = queueA.join("-");// 组合合并后的队伍，使用“-”格开
+	    document.write("<br>将队伍B合并到队伍A:");
+		document.write("<br><li>" + qa);
+	</script>
+	<!-- 范例7-9 -->
+	<h1>splice的使用示例</h1>
+	<script>
+		var queueA = new Array();// 体操队列A
+		queueA.push("学生A", "学生B", "学生C", "学生D", "学生E", "学生F");// 队员进队
+		document.write("<li>原来的队伍A:<br>" + queueA); // 输出队伍A的成员
+		var queueB = queueA.splice(2,3);// 从A队中的第3位学生开始抽出3名学生按顺序组成一个新队
+		document.write("<br><li>调整后的队伍A:<br>" + queueA) ;// 输出裁员后的队伍A
+        document.write( "<br><li>新建的队伍B：<br>" + queueB );             // 输出从队伍A中切取成员形成的队伍B
+        queueA.splice( 1,0, "学生1", "学生2" );                             // 从队伍A的第2个学生处起插入两名学生
+        document.write( "<br><li>添加后的队伍A：<br>" + queueA );           // 输出插入学生后的队伍A
+	</script>
+	<!-- 范例7-10 -->
+	<h1>slice方法的作用</h1>
+	<script>
+		var queueA = new Array(); // 体操队列A
+		queueA.push( "学生A", "学生B", "学生C", "学生D", "学生E", "学生F"); // 队员进队
+		queueA = queueA.slice( 1, 4 );                                      // 切取第2个到第3个元素作为新数组
+		alert( queueA );                                                    // 输出切取出来的数组
+	</script>
+	<!-- 范例7-11 -->
+	<h1>reverse方法的作用</h1>
+	<script>
+	    var queue = new Array( "甲", "乙", "丙", "丁" );    // 创建数组
+	    var newQueue = queue.reverse();                     // 将queue的元素次序反转后形成的新对象内容输出
+	    document.write( "<li>翻转前：" + queue + "<br><li>翻转后：" + newQueue );	
+	</script>
+	<!-- 范例7-12 -->
+	<h1>sort方法的作用</h1>
+	<script>
+	    var date = new Date();
+	    alert(date.toLocaleString());	
+	</script>
+	<!-- 范例7-13 -->
+	<h1>toLocaleString方法的作用</h1>
+	<script>
+		var date = new Date();              // 创建一个日期对象
+	    alert(date.toLocaleString());     // 将日期对象作为本地字符串输出
+	</script>
+	</body>
+</html>

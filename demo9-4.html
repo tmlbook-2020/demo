@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+    <input type="submit" name="Submit" value="单击我" onclick="Size(10,1000)">
+		<script>
+			function Size(x,y)
+			{
+				self.resizeBy(x,y);
+				alert("您的窗口发生改变");
+				self.resizeTo(y,x);
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>第11章代码</title>
+	</head>
+	<body>
+		<h2>范例11-1</h2>
+		<form name="first">
+			文本框1：
+			<input type="text" onkeypress="decument.second.element[0].value=this.value" value="在这里输入内容" >
+		</form>
+		<form name="second">
+			文本框2：
+			<input type="text" onkeypress="decument.form[0].element[0].value=this.value" value="在这里输入内容" >
+		</form>
+		<h2>getElementById方法的举例</h2>
+		<h2 id="myHeader" onclick="getValue()">单击这里</h2>
+		<script>
+			function getValue(){
+				var x = document.getElementById("myHeader");
+				alert(x.innerHTML);
+			}
+		</script>
+		<h2>范例11-3</h2>
+		<form name="Myform">
+		<p>显示个人信息</p>	
+		<p>
+			<textarea name="showMsg" rows="8" cols="40"></textarea>
+		</p>
+		</form>
+		<form action="" method="post" name="form1">
+			个人信息<br>
+			姓名：<input type="text" name="Name">
+			<p>
+				性别：<input type="text" name="sex">
+			</p>
+			<p>
+				学号：<input type="text" name="num">
+			</p>
+			<p style="margin-left: 60px;">
+				<label>
+					<input type="submit" name="Submit" value="提交" onclick="img()"/>
+				</label>
+			</p>
+		</form>
+		<script>
+			function img(){
+				for(i=0;i<document.forms[1].length-1;i++){
+					document.Myform.showMsg.value += document.forms[1].elements[i].value + "\n";
+				}
+				alert(Myform.showMsg.value);
+			}
+		</script>
+		<h2>范例11-4</h2>
+		<a href="http://www.baidu.com" onmouseover="setcolor()">到百度查询</a>
+		<script>
+			function setcolor(){
+				document.vlinkColor = "blue";// 未访问过的超链接的颜色
+				document.linkColor ="green";// 已访问过的超链接的颜色
+				document.alinkColor = "red";// 正在访问过的超链接的颜色
+			}
+		</script>
+		<h2>范例11-5</h2>
+		<h2 onmouseover="changeColor()" onmouseout="outColor()">玉楼春</h2>
+		<p onmouseover="changeColor()" onmouseout="outColor()" >晚妆初了明肌雪， 春殿嫔娥鱼贯列。</p>
+		<p onmouseover="changeColor()" onmouseout="outColor()" >凤箫吹断水云闲， 重按霓裳歌遍彻。</p>
+		<p onmouseover="changeColor()" onmouseout="outColor()" > 临风谁更飘香屑， 醉拍阑干情味切。</p>
+		<p onmouseover="changeColor()" onmouseout="outColor()" >归时休放烛花红， 待踏马蹄清夜月。</p>
+		<script>
+			document.bgColor = "blueviolet";
+			document.fgColor = "antiquewhite";
+			function changeColor(){
+				document.bgColor = "";
+				document.fgColor = "black";
+			}
+			function outColor(){
+				document.bgColor = "pink";
+				document.fgColor = "antiquewhite";
+			}
+		</script>
+		<h2>范例11-6</h2>
+		<script>
+			with(document){
+				writeln("最后一次修改时间：" + document.lastModified + "<br>");//显示修改时间
+				writeln("标题：" + document.title + "<br>");//显示标题
+				writeln("URL:"+document.URL+"<br>");
+			}
+		</script>
+		<h2>范例11-9</h2>
+		<script>
+			document.title = "在页面中输出内容";
+			var str = "必须用document.writeln()";
+			with(document){
+				writeln("<b>您好,</b>");
+				write("欢迎光临！"+"<br>")				
+				writeln("<p><b>在js标签之间,");			
+				writeln(str+"在网页中写HTML</b></p>");
+			}
+		</script>
+	</body>
+</html>

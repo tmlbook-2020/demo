@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>范例8-11</title>
+	</head>
+	<body onDblclick="dclick()" onMousedown="down()" onMouseup="up()" onClick="Click()" >
+		<h1>鼠标点击事件</h1>
+		<form action="" id="form1" name="form1" method="post">
+			<label>
+				<textarea name="text" rows="2" cols="50">	
+				</textarea>
+			</label>
+		</form>
+		<script>
+			function dclick()// 双击事件处理程序
+			{
+				form1.text.value = "您双击了页面！";// 设置文本框中显示的内容
+			}
+			function Click()// 单击事件处理程序
+			{
+				form1.text.value += "您单击了页面";
+			}
+			function down()// 鼠标按下事件处理程序
+			{
+				form1.text.value="您按下了鼠标";
+			}
+			function up()						// 鼠标键释放事件处理程序
+			{
+				form1.text.value="您释放了鼠标";
+			}
+		</script>
+	</body>
+</html>

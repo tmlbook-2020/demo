@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>范例8-7</title>
+		<script>
+			function HandleAllLinks()
+			{
+				for(var i=0;i<document.links.length;i++)
+				{
+					document.links[i].onclick = HandleLink;
+				}
+			}
+			function HandleLink()
+			{
+				alert("即将离开当前页面");
+			}
+		</script>
+	</head>
+	<body onload="HandleAllLinks()">
+		<li><a href="">js学习</a></li>
+	</body>
+</html>

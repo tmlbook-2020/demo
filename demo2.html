@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<script language="JavaScript">
+			var str1 ="1,使用回车换行符\n";  //行尾使用"\n"作回车换行
+			var str2 ="2,使用回车符\r";      //行尾使用"\r"作回车符
+			var str3 = "3,使用:\t制表符\n";	// 中间使用一个制表符“\t”
+			var str4 = "4,使用\"双引号\"";	// 使用引号“\"”
+			var str  = str1 + str2 + str3 + str4;	// 将4个字串符连接为了个串用于显示
+			alert(str);				       // 在对话框是显示连接后的串str
+			document.write(str);
+		</script>
+		<script language="JavaScript">
+			date = new Date();                          //直接创建
+			date = new Date(val);                       //指定日期创建
+			date new Date(y,m,d[,h[,min[,sec[,ms]]]]);  //指定日期创建
+		</script>
+		<script language="JavaScript">
+		    var cur = new Date();		// 创建当前日期对象cur
+			var years = cur.getYear();  	// 从日期对象cur中取得年数
+			var months = cur.getMonth();	// 取得月数
+			var days = cur.getDate();	              // 取得天数
+			var hours = cur.getHours();	// 取得小时数
+			var minutes = cur.getMinutes();	// 取得分钟数
+			var seconds = cur.getSeconds();	// 取得秒数
+							               // 显示取得的各个时间值
+			alert( "此时时间是：" + years + "年" + (months+1) + "月"
+				+ days + "日" + hours + "时" + minutes + "分"
+				+ seconds + "秒" );	
+		</script>
+		<script language="JavaScript">
+			var dateObj =new Date();  
+			dateObj.setYear(2007);    
+			dateObj.setDate(20);     
+			dateObj.setMonth(4);      
+			        alter("dateObj中设定的时间为："+ dateObj.getYear() + "年"
+					+ dateObj.getMonth() + "月"+ dateObj.getDate() + "日");
+		</script>
+		<script language="javascript">
+		<!--
+			var a = NaN;
+			var b = "123";
+			var c = 123;
+			var d = "1.23";
+			document.write( "<b>Global对象的isNaN方法</b><br>" );
+			var ta =  isNaN( a );	// 使用Global对象的isNaN()方法测试a的值 
+			document.write( "<li>a的值是否是NaN：" + ta + "<br>" );
+			var tb = isNaN( b );	// 测试b的值
+			document.write( "<li>b的值是否是NaN：" + tb + "<br>" );
+			var tc = isNaN( c );	// 测试c的值
+			document.write( "<li>c的值是否是NaN：" + tc + "<br>" );
+			document.write( "<b>Global对象的parseInt方法</b><br>" );
+			var ib = parseInt( b );	// 使用Global对象的parseInt方法,将字符串“123”解析为数值123
+			if( ib == c )
+			{
+				document.write( "<li>b解析为数值：" + ib + "<br>" );
+			}
+			document.write( "<b>Global对象的parseFloat方法</b><br>" );		
+			var id = parseFloat( d );// 使用Global对象的parseFloat方法将字符串“1.23”解析为数值1.23
+			if( id == 1.23 )
+			{
+				document.write( "<li>b解析为数值：" + id + "<br>" );
+			}
+		-->
+		</script>
+		<script language="JavaScript">
+			var r = 2;
+			var pi = Math,PI;
+			var s = pi*r*r;
+			alter("半径为2单位的圆面积为："+ s + "单位");
+		</script>
+		<script language="javascript">
+		<!--
+			var comment = "静夜思李白床前明月光，疑是地上霜。举头望明月，低头思故乡。";// 诗的内容
+			var partial = comment.substring( 0, 3 );	// 取出标题
+			partial = partial.bold();			// 标题加粗
+			document.write( "<p align=\"center\">" );	// 输出HTML标签“<p>”，并设置居中对齐
+			document.write( partial );			// 输出标题
+			partial = comment.slice( 3, 5 );		// 取出作者
+			document.write( "<br>" );		// 输出换行标签<br>
+			document.write( partial );			// 输出作者
+			partial = comment.slice( 5, 17 );		// 取出第一句诗文
+			partial = partial.fontcolor("red");		// 设置颜色为red（红色）
+			document.write( "<br>" );		// 输出换行标签
+			document.write( partial );			// 输出诗句
+			partial = comment.slice( 17, 29 );		// 取出第二句诗文
+			partial = partial.fontcolor("red");		// 设置颜色为red（红色）
+			document.write( "<br>" );		// 输出换行标签
+			document.write( partial );			// 输出诗句
+			document.write( "</p>" );			// 输出HTML标签“<p>”的结束标签
+		-->
+		</script>
+		<script language="JavaScript">
+			var poets = new Array("王维","杜甫","李白","白居易");
+			document.write("古代几个大诗人:<br>");
+			for(n in poets)
+			{
+				document.write("<li>"+poets[n]);
+			}
+		</script>
+		<script language="javascript">	// 脚本程序开始
+		<!--
+			var x = 10;		// 定义变量x，并给其赋值10
+			var y = null;		// 定义变量y，并赋一个空值，表示“什么都没有”
+			if( x == null )		// 如果x为空值则
+			{
+				document.write( "x的值为空<br>" );	// 输出提示
+			}
+			if( y == null )			// 如果y为空则
+			{
+				document.write( "y的值为空<br>" );	// 输出提示
+			}红色为条件语句
+		-->
+		</script>				<!--脚本程序结束-->
+		
+	</body>
+</html>

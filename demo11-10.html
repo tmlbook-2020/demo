@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>							<!--文档的头-->
+<script >	 
+function openWin()   
+{   
+	newWindow=window.open("","", "height=250, width=250,toolbar=no,enubar=no");   
+ 
+	newWindow.document.write("<title>例子</title>");			     
+	newWindow.document.write("<body bgcolor=#ffffff>");		 		  
+	newWindow.document.write("<h1>Hello!</h1>");				
+	newWindow.document.write("New window opened!");			
+	newWindow.document.write("</body>");					   
+	newWindow.document.write("</html>");					
+	newWindow.document.close();								 
+}   
+</script>   
+</head>   
+<body> 
+<!--  调用openWin()函数,打开一个新窗口-->  
+<a href="#"onClick="openWin()">打开一个窗口</a>				
+<input type="button" onClick="openWin()" value="打开窗口"> 	
+</body>   
+</html>   
+
+
+

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>第六章代码</title>
+	</head>
+	<body>
+		<!-- 范例6-1 -->
+		<script>
+			function Sum(arg1,arg2)
+			{
+				var sarg1 = new String(arg1);
+				var sarg2 = new String(arg2);
+				if((sarg1=="")||(sarg2==""))
+				{
+					var e0 = new Error(); // 当有参数为空则抛出异常
+					e0.Serial = 1000001;
+					if(sarg1=="") // 根据为空的参数正确填写错误信息
+					{
+						e0.message = "Sum函数参数非法：第1个参数为空！"；
+					}
+					else
+					{
+						e0.message = "Sum函数参数非法：第2个参数为空！"；
+					}
+					throw e0; // 抛出错误信息
+				}
+				for(i=0;i<sarg1.length;i++)// 参数合法性检查
+				{
+					for(j=0;j<10;j++)// 检查所有字符
+					{
+						if(sarg1.charAt(i)==j)// 若不是数字则抛出错误信息
+						{
+							break;
+						}
+						else{
+							if(j==9)
+							{
+								var e1 = new Error();// 错误信息
+								el.Serial = 1000001;
+								e1.message = "Sum函数参数："+sarg1+"是非法数字！";
+								throw e1;
+							}
+						}
+					}
+				}
+				for(k=0;k<sarg2.length;k++) // 检查参数2是数字
+				{
+					for(l=0;l<10;l++)
+					{
+						if(sarg2.charAt(k)==1)
+						{
+							break;
+						}
+						else
+						{
+							if(l==9)
+							{
+								var e2 = new Error();
+								e2.Serial = 1000001;
+								e2.message = "Sum函数参数："+sarg2+"是非法数字！";
+								throw e2;
+							}
+						}
+					}
+				}
+				 return Number(arg1) + Number(arg2);// 参数都正确则返回两个值的和
+			}
+			function Button1_onclick()                 // “计算”按钮的单击事件处理程序
+			{
+			    try                                    // 提取用户输入的数据
+			    {
+			        var Text1 = document.getElementById( "Text1" );
+			        var Text2 = document.getElementById( "Text2" );
+			        var Text3 = document.getElementById( "Text3" );
+			        var sum = Sum( Text1.value, Text2.value );  // 调用函数进行计算
+			        Text3.value = sum;                 // 输出计算结果
+			    }
+			    catch( e )                             // 有错误发生则输出错误信息
+			    {
+			        alert( e.message );
+			        if( e.serial == 1000001 )
+			        {
+			            alert( e.message );
+			            e = null;                      // 断开错误对象的引用
+			        }
+			    }
+			}
+		</script>
+		<!--用户界面，包括三个文本框，一个按钮-->
+		    <input id="Text1" type="text" style="width: 84px" maxlength="20" />
+		    + <input id="Text2" type="text" style="width: 75px" maxlength="20" />
+		    = <input id="Text3" type="text" style="width: 69px" />
+		    <input id="Button1" type="button" value="计算" onclick="return Button1_onclick()" />
+		<!-- 范例6-2 -->
+		<script>
+			var circularityArea = new Function("r","return r*r*Math.PI");
+			var rCircle = 2;
+			var area = circularityArea(rCircle);
+			alert("半径为2的圆面积为:"+ area);
+		</script>
+		<!-- 范例6-3 -->
+		<script>
+			function SortNumber(obj,func) // 定义通用排序函数
+			{
+				if(!(obj instanceof Array)||!(func instanceof Function))// 参数验证，如果第一个参数不是数组或第二个参数不是函数则抛出异常
+				{
+					var e = new Error(); // 生成错误信息
+					e.number = 100000; // 定义错误号
+					e.message = "参数无效"; // 错误描述
+					throw e;// 抛出异常
+				}
+				for(n in obj) // 开始排序
+				{
+					for(m in obj)
+					{
+						if(func(obj[n],obj[m])) // 使用回调函数排序，规则由用户设定
+						{
+							var tmp = obj[n];
+							obj[n] = obj[m];
+							obj[m] = tmp;
+						}
+					}
+				}
+				return obj;  // 返回排序后的数组
+			}
+			 function greatThan( arg1, arg2 )                // 回调函数，用户定义的排序规则
+			    {
+			        return arg1 > arg2;                         // 规则：从大到小
+			    }
+			    try
+			    {
+			        var numAry = new Array( 5,8,6,32,1,45,7,25 );   // 生成一数组
+			        document.write("<li>排序前："+numAry);          // 输出排序前的数据
+			        SortNumber( numAry, greatThan )                 // 调用排序函数
+			        document.write("<li>排序后："+numAry);          // 输出排序后的数组
+			    }
+			    catch(e)
+			    {
+			        alert( e.number+"："+e.message );               // 异常处理
+			    }
+		</script>
+		<!-- 范例6-4 -->
+		<script>
+			function sum(arg1,arg2)
+			{
+				var realArgCount = arguments.length;//调用函数时传递的实参个数
+				var frmArgCount = sum.length;  // 函数定义时的形参个数
+				if(realArgCount<frmArgCount)  // 如果实际参数个数少于形参个数
+				{
+					var e = new Error();
+					e.number = 100001;
+					e.message = "实际参数个数不符合要求!";
+					throw e;
+				}
+				return arguments[0] + arguments[1];         // 参数符合要求则从arguments对象中提取实参并返回两者的和
+			}
+			try
+			{
+				 document.write( "<p><h1>arguments对象测试</h1></p>" );  // 输出标题
+				 document.write( "正确调用的结果：" + sum(10,20) );      // 输出正确调用的结果
+				 document.write( "<br>不符合规则的调用结果：" );         // 人为引发一个不符合规则的调用方式
+				 document.write( sum(10) );
+			}
+			catch(e)// 捕捉错误
+			{
+				lert(e.number+"错误号："+e.message); // 输出错误信息
+			}
+		</script>
+		<!-- 范例6-5 -->
+		<script>
+			function a() // a为最外层函数
+			{
+				function b()    // b为第1层函数
+				{
+					function c() // c为第2层函数
+					{
+						document.write( "<li>C" );
+					}
+					 document.write( "<li>B" );
+				}
+				 document.write( "<li>A" );
+				 b();// a的代码调用a的私有函数b
+				 c();// a的代码偿试调用b的私有函数，将发生一个错误
+			}
+			a();// 调用a
+		</script>
+		<!-- 范例6-6 -->
+		<h1>this关键字测试</h1>
+		<script>
+			var chair = "公园里的椅子";             // 公物，谁都可以用。
+			function TomHome( )                     // 汤姆的家
+			{
+			    this.chair = "汤姆家的椅子";        // 汤姆家的椅子
+			}
+			function useChair( )                    // 使用椅子    
+			{
+			    document.write( "<li>此时使用的是：" + this.chair + "<br>");
+			}
+			var th = new TomHome();         
+			useChair();                             // 当前所在的场景是公园里
+			useChair.call( th );                    // 当前所在的场景是汤姆家
+		</script>
+		<!-- 综合练习6-1 -->
+		<script>
+			function Button1_onclick()
+			{
+				try
+				{
+					var cmdWin = document.getElementById("TextArea1");  // 获取文本框的引用
+                    var str = "try{" + cmdWin.value + "}catch(e){alert('你的代码有错：'+e.description);}";// 构造函数体
+                    var cmd = new Function(str);    // 构造函数
+                    cmd();                          // 调用函数
+				}
+				catch(e)
+				{
+					alert("错误："+e.description);  // 输出错误信息
+				}
+			}
+		</script>
+		<!--用户界面，一文本框，一按钮-->
+		    <div align="center" style="border-right: #3e4c5f 1px solid; border-top: #ffe05d 1px solid; border-left: #ffefa0 1px solid;
+		    width: 618px; border-bottom: #ff9642 1px solid; border-right: #ff9642 1px solid; height: 336px; background-color: #fff">
+		    <textarea id="TextArea1" style="width: 612px; height: 300px"></textarea>
+		    <input id="Button2" type="button" value="执行程序" onclick="return Button1_onclick()" style="width: 145px" /></div>
+		<!-- 综合练习6-2 -->	
+		<script>
+			function Student( name, number )	// 学生对象构造函数
+			{
+			    this.name = name;			// 学生名字属性
+			    this.number = number;		// 学生名字属性
+			}
+			var students = new Array( new Student("John",4), new Student("Wendy",2), new Student("Vicky",5),
+			                            new Student("Kevin",1), new Student("Richard",3) );	// 5个学生
+			var g_orderRule;			// 规则开关
+			var names = "";				// 名字序列
+			for( x in students )			// 组合排序前的学生名字
+			{
+			    names += students[x].name + " ";
+			}
+			tn = document.createTextNode( names );	// 创建文节点，用于显示结果
+			var div = document.getElementById("divNames");	// 获取DIV层	
+			div.appendChild(tn)			// 将文本节点添加为层的子节点
+			tn.nodeValue = names;			// 设置文本节点的文字属性
+			function Order( obj, funcRule)		// 排序函数
+			{
+			    if( (typeof(funcRule)!="function") || ( funcRule.length<2) )	// 检查参数的正确性
+			    {
+			        var e = new Error();		// 不正确则抛出异常
+			        e.message = "参数不符合要求";
+			        throw e;
+			    }
+			    for( n in obj )			// 遍历数据组，按回调函数的规则排序	
+			    {
+			        for( m in obj )
+			        {
+			            // funcRule为外部回调函数，用户可在回调函数中实现自已的排序规则
+			            if( funcRule( obj[n].number, obj[m].number ) )
+			            {
+			                var tmp = obj[n];
+			                obj[n] = obj[m];
+			                obj[m] = tmp;
+			            }
+			        }
+			    }
+			    names = "";		
+			    for( x in obj )		
+			    {
+			        names += obj[x].name + " ";	// 组合排序后的名字
+			    }
+			    tn.nodeValue = names;
+			}
+			function funcRule( arg1, arg2 )		// 排序规则回调函数
+			{
+			    if( (typeof(arg1) != "number")||(typeof(arg2) != "number") )	// 参数检查
+			    {
+			        var e1 = new Error();
+			        e1.message = "学生的序号属性为非数字";
+			        throw e1;
+			    }
+			    if( g_orderRule )			// 根据用户的选择设置排升规则
+			    {
+			        return arg1<arg2;		// 升序
+			    }
+			    else
+			    {
+			       return arg1>arg2;		// 降序
+			    }
+			}
+			function Button_onclick( objID )	// 按钮单击事件处理程序
+			{
+			    if( objID=="Button1" )
+			    {
+			        g_orderRule = true;
+			    }
+			    else
+			    {
+			        g_orderRule = false;
+			    }
+			    try
+			    {
+			        Order( students, funcRule );	// 排序并输出
+			    }
+			    catch( e )
+			    {
+			        alert(e.message);
+			    }
+			}
+		</script>
+		<!--用户界面，一个DIV层和两个按钮-->
+		<div id="divNames" style="width: 422px; height: 100px; border-right: blue 1px solid; border-top: blue 1px solid; border-left: blue 1px solid; border-bottom: blue 1px solid;">
+		</div>
+		<input id="Button1" type="button" value="升序" onclick="return Button_onclick(this.id)" style="margin-left: 150px;"/>
+		<input id="Button2" type="button" value="降序" onclick="return Button_onclick(this.id)"/>
+	</body>
+</html>

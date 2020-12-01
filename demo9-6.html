@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>关闭当前文档</title>
+	</head>
+	<body>
+		<label >
+			<input type="submit" name="Submit" onclick="closeWindow()" value="关闭" />
+		</label>
+	<script>
+		function closeWindow()
+		{
+			if(self.closed)
+			{
+				alert("窗口已经关闭";
+			}
+			else
+			{
+				self.close();
+			}
+		}
+	</script>
+	</body>
+</html>

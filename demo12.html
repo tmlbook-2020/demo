@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>第12章代码</title>
+	</head>
+	<body>
+		<h2>范例12-1</h2>
+		<label><h1>这是站点首页</h1></label>
+		<input type="button" value="后退到上一页"  onclick="history.back()"/>
+		<input type="button" value="前进到上一页"  onclick="history.forward()"/>
+		<a href="child_1.html"><li>第1个子页</a>					
+		<a href="child_2.html"><li>第2个子页</a>
+		<h2>location方法 范例12-6</h2>
+		<div  onClick="Assign()">前往百度首页</div>
+		<div  onClick="Replace()">163邮箱登录</div>
+		<div  onClick="Reload()">前往google首页</div>
+		<script>
+			function Assign()
+			 {	
+				location.assign("http://www.baidu.com");//加载一个新文档,和location对象的href属一样
+			}
+			function Replace()
+			{				
+				location.replace("http://mail.163.com");// 使用新的URL替换当前文档，不加入到浏览器的历史中
+			}
+			function Reload() 
+			{
+				// 重新载入当前文档，有一个bool参数，默认为false，参数为ture时从服务器载入，为false时从缓存载入
+				location.reload("http://www.google.cn/");				
+			}
+		</script>
+		<h2>范例12-7 刷新文档</h2>
+		<input type=button value=刷新 onclick="history.go(0)">
+		<input type=button value=刷新 onclick="location.reload()"> 
+		<input type=button value=刷新 onclick="location=location">
+		<input type=button value=刷新 onclick="window.navigate(location)"> 
+		<input type=button value=刷新 onclick="location.replace(location)">
+		<h2>范例12-8 replace(url)方法</h2>
+		<input type="button" value="取消" onclick="test()" class="button" />
+		<input type=button value="加载新页面" onclick="goUrl()"> 
+		<script>
+			var pos = 0
+				function test() 
+				{ 
+					str=window.location; 
+					str=str.replace('/'); 
+					window.location.str; 
+				} 	　　
+				function goUrl()
+				 { 
+				　　 pos++ 
+				　　 location.replace("http://www.baidu.com#" + pos) 
+				　} 
+		</script>
+	</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>范例11-8</title>
+	</head>
+	<body>
+		<script>
+			var frontURL = document.referrer;
+			var host = location.hostname;
+			if(frontURL != "")
+			{
+				var frontHost=frontURL.substring(7,host.length+7);
+				if(host==frontHost)									//判断两个文档的域名是否一致
+				{
+					alert("没有盗链！")								//域名一致提示用户访问合法
+				}
+				else
+				{
+					alert("您是非法链接，请通过本部访问")			//域名不一致提示用户访问非法
+				}
+			}
+				else
+				 {
+					alert("您是直接打开该文档的，没有盗链")				//用户直接打开的文档
+				}
+		</script>
+	</body>
+</html>

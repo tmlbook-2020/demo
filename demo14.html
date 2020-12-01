@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>第十四章代码</title>
+	</head>
+	<body>
+		<!-- 范例14-1 -->
+		<h3>检测浏览器是否支持cookie功能</h3>
+		<script>
+			if(navigator.cookieEnabled)
+			{
+				document.write("你的浏览器支持cookie功能");
+			}
+			else
+			{
+				document.write("你的浏览器不支持cookie功能");
+			}
+		</script>
+		<!-- 范例14-2 -->
+		<h3>创建并读取cookie的例子。</h3>
+		<script>
+			document.cookie = ' userId = 828';
+			document.cookie = ' userName = lisi';
+			var strCookie = document.cookie;
+			alert(strCookie);
+		</script>
+		<!-- 范例14-3 -->
+		<h3>获取cookie的值</h3>
+		<script>
+			document.cookie = 'id = 828';
+			document.cookie = 'usr = yx';
+			var str = document.cookie;
+			var arr = str.split(";");//将多cookie切割为多个名/值对
+			var userIndex = "";
+			var i = 0;
+			while(i<arr.length)
+			{
+				var arrs = arr[i].split("=");
+				if("id"==arrs[0])
+				{
+					userIndex = arrs[1];
+					break;
+				}
+				i++;
+			}
+			if(userIndex!="")
+			    alert(userIndex);
+			else
+			    alert("查无此值");
+		</script>
+		<!-- 范例14-5 -->
+		<h3>cookie的生存期</h3>
+		cookie名:
+		<input type="text" name="Name">
+		<br />
+		cookie值:
+		<input type="text" name="Value">
+		<br />
+		cookie时间:
+		<select name="Time" id="1">
+			<option value="1">一天</option>
+			<option value="2">二天</option>
+			<option value="3">三天</option>
+			<option value="4">四天</option>
+			<option value="5">五天</option>
+			<option value="6">六天</option>
+			<option value="7">七天</option>
+			<option value ="8">八天</option>
+		</select>
+		<script>
+			function setCookie()
+			{
+				n = Time.value;
+				var name = Name.value;
+				var psd = Value.value;
+				if(name!="")
+				{
+					var date = new Date();
+					var expireDays = n*24*3600*1000;//将date设置为n天以后的时间
+					date.setTime(date.getTime() + expireDays);
+					//将userId和userName两个cookie设置为10天后过期
+					document.cookie=name+"=;" +escape(psd)+"; expire="+date.toGMTString();
+					alert("设置成功!时间为："+expireDays+"秒（"+n+"天）"); 
+				}
+				else
+				{
+					alert("设置失败，cookie变量名不能为空");
+				}
+			}
+		</script>
+		<input type="submit" name="Submit" value="设置cookie"  onClick="setCookie()">
+	</body>
+</html>

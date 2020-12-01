@@ -1,0 +1,38 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset=utf-8">
+<title>网页开屏</title>
+<script>                                                                  
+var x = 10;                                               
+var y = 45;               
+var dx = 15;    
+var dy = 15;                            
+var newWindow=window.open("","_blank","menubar=0,toolbar=0");       
+newWindow.resizeTo(x,y);                           
+var intervalID=window.setInterval("active()",200);  
+function active()
+{
+	if(newWindow.closed)                                     
+	{
+		clearInterval(intervalID);                             
+		return;
+		}
+		if(x<screen.availWidth)                  
+		{
+			x+=dx;
+			y+=dy;
+		}
+		else
+		{
+			clearInterval(intervalID);             
+		}
+		newWindow.resizeTo(x,y);           
+	}
+</script>                            
+</head>
+<body>
+<input type="button" value="stop" onClick="clearInterval(intervalID);newWindow.close()"/>
+</body>
+</html>
+

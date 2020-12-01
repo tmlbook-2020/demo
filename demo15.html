@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>第15章代码</title>
+	</head>
+	<body>
+		<h3>范例15-1</h3>
+		<script>
+			function CreateHttpRQ()
+			{
+				if(window.navigator.appName == "Microsoft Internet Explorer")
+				{
+					try
+					{
+						return new ActiveXObject("Microsoft.XMLHTTP");// 创建XMLHttpRequest
+					}
+					catch(E)
+					{
+						return null;
+					}
+				}
+				else
+				{
+					return new XMLHttpRequest();
+				}
+			}
+			if(CreateHttpRQ() != null)
+			{
+				window.status = "XMLHttpRequest对象创建成功～！";	
+			}
+		</script>
+		<!-- 范例15-2 -->
+		<h3>自动聚合消息</h3>
+		<div id="viewport">当前没有新闻</div>
+		<script>
+			var xmlDOM = new ActiveXObject("Microsoft.XMLDOM");
+			var newsArray = new Array();
+			var index = 0;																											
+			if( xmlDOM != null )																								
+			{
+				xmlDOM.async = false;																						
+				xmlDOM.load( "news.xml" );																				
+				xmlDOM = xmlDOM.documentElement;																
+				for( n=0; n<xmlDOM.childNodes.length; n++ )												
+				{
+						newsArray.push( xmlDOM.childNodes[n].firstChild.nodeValue );// 提取新闻
+				}
+			}
+			setInterval( "ToggleNews()", 1000 );// 设定定时器
+			function ToggleNews( )				// 定时器函数
+			{
+				viewport.innerHTML = "<li>"+newsArray[index%(newsArray.length)];	// 设置DIV文本
+				index++;														// 索引号递增
+			}
+		</script>
+	</body>
+</html>
